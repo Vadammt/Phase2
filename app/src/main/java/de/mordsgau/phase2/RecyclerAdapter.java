@@ -1,9 +1,7 @@
 package de.mordsgau.phase2;
 
-import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +13,7 @@ import android.widget.TextView;
  * Created by simonbaier on 14.10.17.
  */
 
-class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     final int viewIndex;
     private final Context context;
 
@@ -27,8 +25,8 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // Contains a text view and a layout containing charts
         final CardView container;
-        final TextView textView;
-        final LinearLayout chartLayout;
+        public final TextView textView;
+        public final LinearLayout chartLayout;
 
         public ViewHolder(View itemView, TextView textView, LinearLayout chartLayout, CardView container) {
             super(itemView);
