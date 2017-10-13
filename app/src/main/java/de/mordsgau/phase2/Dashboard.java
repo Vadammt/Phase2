@@ -2,6 +2,7 @@ package de.mordsgau.phase2;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -18,6 +19,9 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.github.florent37.materialviewpager.MaterialViewPager;
+import com.github.florent37.materialviewpager.header.HeaderDesign;
+
 public class Dashboard extends AppCompatActivity {
 
     /**
@@ -33,12 +37,15 @@ public class Dashboard extends AppCompatActivity {
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+    private MaterialViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        setTitle("");
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,43 +54,55 @@ public class Dashboard extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        mViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
+        mViewPager.getViewPager().setAdapter(mSectionsPagerAdapter);
+        mViewPager.setMaterialViewPagerListener(new MaterialViewPager.Listener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public HeaderDesign getHeaderDesign(int page) {
+                switch (page) {
+                    case 0:
+                        return HeaderDesign.fromColorResAndUrl(
+                                R.color.cyan,
+                                "https://images.unsplash.com/photo-1467380119941-dc5acf7c6325?dpr=1&auto=compress,format&fit=crop&w=2853&h=&q=80&cs=tinysrgb&crop=");
+                    case 1:
+                        return HeaderDesign.fromColorResAndUrl(
+                                R.color.green,
+                                "https://images.unsplash.com/reserve/wPCyys8TPCHY3GXm2N2D_ssp_inthewoods_1.jpg?dpr=1&auto=compress,format&fit=crop&w=1650&h=&q=80&cs=tinysrgb&crop=");
+                    case 2:
+                        return HeaderDesign.fromColorResAndUrl(
+                                R.color.blue,
+                                "https://images.unsplash.com/photo-1466428996289-fb355538da1b?dpr=1&auto=compress,format&fit=crop&w=2850&h=&q=80&cs=tinysrgb&crop=");
+                    case 3:
+                        return HeaderDesign.fromColorResAndUrl(
+                                R.color.red,
+                                "http://www.tothemobile.com/wp-content/uploads/2014/07/original.jpg");
+                }
+
+                //execute others actions if needed (ex : modify your header logo)
+
+                return null;
             }
         });
 
+        mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
+        mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
+
     }
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    protected void onStart() {
+        super.onStart();
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            actionBar.setDisplayShowHomeEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(true);
+            actionBar.setDisplayUseLogoEnabled(false);
+            actionBar.setHomeButtonEnabled(false);
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
 
     /**
      * A placeholder fragment containing a simple view.
@@ -147,11 +166,11 @@ public class Dashboard extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Aktuelles";
                 case 1:
-                    return "SECTION 2";
+                    return "Statistik";
                 case 2:
-                    return "SECTION 3";
+                    return "Einstellungen";
             }
             return null;
         }
