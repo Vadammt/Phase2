@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import de.mordsgau.phase2.card.CardFactory;
+
 /**
  * Created by simonbaier on 14.10.17.
  */
@@ -43,14 +45,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         // card index
         switch (position) {
             case 0:
-                vh.textView.setText("Test 1");
+                CardFactory.buildPowerConsumption(vh);
                 //TODO chart
                 break;
             case 1:
                 vh.textView.setText("Test 2");
                 break;
             case 2:
-                vh.textView.setText("Test 3");
+                CardFactory.buildPowerConsumption(vh);
                 break;
             default:
                 vh.textView.setText("Test default");
