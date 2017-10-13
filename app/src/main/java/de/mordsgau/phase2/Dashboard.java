@@ -25,12 +25,22 @@ import android.widget.TextView;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 public class Dashboard extends AppCompatActivity {
 
     /* Fragment indices */
     public static final int RECENT = 0;
     public static final int STATISTICS = 1;
+    public static final int SETTINGS = 2;
 
 
     /**
@@ -46,7 +56,7 @@ public class Dashboard extends AppCompatActivity {
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+    private MaterialViewPager mViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,8 +122,6 @@ public class Dashboard extends AppCompatActivity {
         }
     }
 
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * A placeholder fragment containing a simple view.
