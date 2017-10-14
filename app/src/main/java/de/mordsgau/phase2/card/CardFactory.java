@@ -6,16 +6,19 @@ import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
+import com.db.chart.animation.Animation;
 import com.db.chart.model.BarSet;
 import com.db.chart.model.LineSet;
 import com.db.chart.renderer.AxisRenderer;
 import com.db.chart.renderer.XRenderer;
 import com.db.chart.renderer.YRenderer;
 import com.db.chart.util.Tools;
-import com.db.chart.view.BarChartView;
 import com.db.chart.view.HorizontalStackBarChartView;
 import com.db.chart.view.LineChartView;
+
+import java.text.DecimalFormat;
 
 import de.mordsgau.phase2.R;
 
@@ -111,31 +114,43 @@ public class CardFactory {
         card.textView.setText(R.string.card_goals);
 
         // Sample values
-        final String[] mLabels = {"A", "B", "C", "D"};
-        final float[][] mValues = {{6.5f, 8.5f, 2.5f, 10f}, {7.5f, 3.5f, 5.5f, 4f}};
-
-        final BarChartView mChart = new BarChartView(card.context);
+        final HorizontalStackBarChartView mChart = new HorizontalStackBarChartView(card.context);
+        final String[] mLabels = {"0-20"};
+        final float[][] mValues = {{65}, {35}};
 
         // Data
         BarSet barSet = new BarSet(mLabels, mValues[0]);
-        barSet.setColor(Color.parseColor("#fc2a53"));
+        barSet.setColor(Color.parseColor("#009688"));
         mChart.addData(barSet);
 
-        mChart.setBarSpacing(Tools.fromDpToPx(20));
-        mChart.setRoundCorners(Tools.fromDpToPx(2));
-        mChart.setBarBackgroundColor(Color.parseColor("#592932"));
+        barSet = new BarSet(mLabels, mValues[1]);
+        barSet.setColor(Color.parseColor("#FF5722"));
+        mChart.addData(barSet);
 
-        // Chart
-        mChart.setXAxis(false)
+        Paint gridPaint = new Paint();
+        gridPaint.setColor(Color.parseColor("#e7e7e7"));
+        gridPaint.setStyle(Paint.Style.STROKE);
+        gridPaint.setAntiAlias(true);
+        gridPaint.setStrokeWidth(Tools.fromDpToPx(.7f));
+
+        mChart.setBarSpacing(Tools.fromDpToPx(10));
+
+        mChart.setBorderSpacing(0)
+                .setYLabels(AxisRenderer.LabelPosition.NONE)
+                .setStep(10)
+                .setGrid(0, 10, gridPaint)
+                .setXAxis(false)
                 .setYAxis(false)
-                .setXLabels(XRenderer.LabelPosition.OUTSIDE)
-                .setYLabels(YRenderer.LabelPosition.NONE)
-                .setLabelsColor(Color.parseColor("#86705c"))
-                .setAxisColor(Color.parseColor("#86705c"));
+                .setLabelsFormat(new DecimalFormat("##'%'"))
+                .show(new Animation().setDuration(2500));
+
+        // Add chart to view.
+        View forecast = LayoutInflater.from(card.context).inflate(R.layout.card_goals, null);
+        RelativeLayout progressContainer = forecast.findViewById(R.id.progress);
+        mChart.setLayoutParams(new LinearLayout.LayoutParams(progressContainer.getLayoutParams()));
+        progressContainer.addView(mChart);
 
         mChart.show();
-
-        View forecast = LayoutInflater.from(card.context).inflate(R.layout.card_goals, null);
 
         card.chartLayout.addView(forecast);
     }

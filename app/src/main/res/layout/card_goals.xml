@@ -14,22 +14,32 @@
             android:layout_height="50dp"
             app:srcCompat="@drawable/ic_star_black_24dp" />
 
-        <LinearLayout
-            android:id="@+id/progress"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"></LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@+id/imageView"
+            android:layout_above="@+id/textView2">
+
+            <RelativeLayout
+                android:id="@+id/progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/imageView">
+
+            </RelativeLayout>
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/imageView"
             android:layout_weight="1"
             android:text="CO2 Ausstauß reduzieren"
             android:textAlignment="center"
-            android:layout_alignBottom="@+id/imageView"
-            android:layout_alignParentEnd="true"
-            android:layout_toEndOf="@+id/imageView" />
+            android:textSize="16sp" />
 
     </RelativeLayout>
 
