@@ -103,13 +103,12 @@ public class CardFactory {
                 .setXLabels(XRenderer.LabelPosition.OUTSIDE)
                 .setYAxis(false)
                 .setYLabels(YRenderer.LabelPosition.OUTSIDE)
-                .setValueThreshold(89.f, 89.f, thresPaint)
-                .show(new Animation().setDuration(2500));
+                .setValueThreshold(89.f, 89.f, thresPaint);
 
         LinearLayout.LayoutParams layout = new LinearLayout.LayoutParams(card.chartLayout.getLayoutParams());
         chart.setLayoutParams(layout);
 
-        chart.show();
+        chart.show(new Animation().setDuration(2500));
     }
 
     public static void buildIncomeForecast(CardViewHolder card) {
@@ -152,8 +151,7 @@ public class CardFactory {
                 .setGrid(0, 10, gridPaint)
                 .setXAxis(false)
                 .setYAxis(false)
-                .setLabelsFormat(new DecimalFormat("##'%'"))
-                .show(new Animation().setDuration(2500));
+                .setLabelsFormat(new DecimalFormat("##'%'"));
 
         // Add chart to view.
         View forecast = LayoutInflater.from(card.context).inflate(R.layout.card_goals, null);
@@ -161,7 +159,7 @@ public class CardFactory {
         mChart.setLayoutParams(new LinearLayout.LayoutParams(progressContainer.getLayoutParams()));
         progressContainer.addView(mChart);
 
-        mChart.show();
+        mChart.show(new Animation().setDuration(2500));
 
         card.chartLayout.addView(forecast);
     }
