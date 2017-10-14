@@ -7,25 +7,25 @@
     tools:context="de.mordsgau.phase2.BatteryState">
 
     <LinearLayout
-        android:layout_width="376dp"
-        android:layout_height="637dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:background="@color/blue"
-            android:layout_height="100dp">
+            android:layout_height="100dp"
+            android:background="@color/blue">
 
             <TextView
                 android:id="@+id/textView16"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="Dynamic Battery Sharing"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
-                android:gravity="center"
                 android:textSize="24sp"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="0dp" />
@@ -97,8 +97,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_above="@+id/shared_battery_seekbar"
-                                android:layout_toEndOf="@+id/in_use"
                                 android:layout_marginLeft="10dp"
+                                android:layout_toEndOf="@+id/in_use"
                                 android:layout_weight="1"
                                 android:text="öffentliche Abrufbar"
                                 android:textSize="14sp" />
@@ -135,8 +135,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_alignBaseline="@+id/in_use"
                                 android:layout_alignBottom="@+id/in_use"
-                                android:layout_toEndOf="@+id/in_use"
                                 android:layout_marginLeft="10dp"
+                                android:layout_toEndOf="@+id/in_use"
                                 android:layout_weight="1"
                                 android:text="lokale Nutzung"
                                 android:textSize="14sp" />
