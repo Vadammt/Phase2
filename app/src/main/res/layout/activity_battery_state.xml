@@ -80,7 +80,7 @@
                             android:layout_alignParentTop="true"
                             android:layout_weight="1"
                             android:text="sind in öffentlicher Benutzung"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <SeekBar
                             android:id="@+id/seekBar2"
@@ -116,7 +116,7 @@
                             android:layout_alignParentTop="true"
                             android:layout_weight="1"
                             android:text="sind in öffentlicher Benutzung"
-                            android:textSize="16sp" />
+                            android:textSize="14sp" />
 
                         <RelativeLayout
                             android:layout_width="match_parent"
