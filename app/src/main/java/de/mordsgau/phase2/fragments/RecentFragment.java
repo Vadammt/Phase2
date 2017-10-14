@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 
 import de.mordsgau.phase2.R;
-import de.mordsgau.phase2.RecyclerAdapter;
+import de.mordsgau.phase2.adapter.RecyclerAdapter;
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 import static de.mordsgau.phase2.Dashboard.RECENT;
