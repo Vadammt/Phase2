@@ -35,6 +35,8 @@
                 android:id="@+id/card_icon"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:paddingEnd="4dp"
+                android:tint="#00695C"
                 android:src="@mipmap/ic_launcher" />
 
             <TextView

@@ -5,6 +5,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -58,10 +59,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<CardViewHolder> {
         CardView linearLayout = (CardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_view, parent, false);
         final TextView textContent = linearLayout.findViewById(R.id.text_content);
+        final ImageView iconView = linearLayout.findViewById(R.id.card_icon);
         final LinearLayout chartContainer = linearLayout.findViewById(R.id.chart_container);
         final CardView card = linearLayout.findViewById(R.id.card_view);
         // set the view's size, margins, paddings and layout parameters
-        CardViewHolder vh = new CardViewHolder(linearLayout.getRootView(), textContent, chartContainer, card, context);
+        CardViewHolder vh = new CardViewHolder(linearLayout.getRootView(), textContent, chartContainer, card, iconView, context);
         return vh;
     }
 }

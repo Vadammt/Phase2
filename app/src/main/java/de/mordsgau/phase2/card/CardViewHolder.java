@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,12 +15,14 @@ public class CardViewHolder extends RecyclerView.ViewHolder {
     // Contains a text view and a layout containing charts
     final CardView container;
     public final TextView textView;
+    public final ImageView iconView;
     public final LinearLayout chartLayout;
     public final Context context;
 
-    public CardViewHolder(View itemView, TextView textView, LinearLayout chartLayout, CardView container, Context context) {
+    public CardViewHolder(View itemView, TextView textView, LinearLayout chartLayout, CardView container, ImageView iconView, Context context) {
         super(itemView);
         this.textView = textView;
+        this.iconView = iconView;
         this.chartLayout = chartLayout;
         this.container = container;
         this.context = context;
