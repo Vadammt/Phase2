@@ -48,8 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 CardFactory.buildPowerConsumption(vh);
                 break;
             case 1:
-                //TODO chart
-                vh.textView.setText("Test 2");
+                CardFactory.buildIncomeForecast(vh);
                 break;
             case 2:
                 CardFactory.buildBatteryState(vh);

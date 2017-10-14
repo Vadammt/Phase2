@@ -3,6 +3,8 @@ package de.mordsgau.phase2.card;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.db.chart.model.BarSet;
@@ -96,5 +98,15 @@ public class CardFactory {
         chart.setLayoutParams(layout);
 
         chart.show();
+    }
+
+    public static void buildIncomeForecast(RecyclerAdapter.ViewHolder card) {
+
+        card.textView.setText(R.string.card_income_forecast);
+
+        View forecast = LayoutInflater.from(card.context).inflate(R.layout.card_income_forecast, null);
+
+        card.chartLayout.addView(forecast);
+
     }
 }
