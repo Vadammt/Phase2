@@ -40,6 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<CardViewHolder> {
                 break;
             case 3:
                 CardFactory.buildGoals(vh);
+                break;
             default:
                 vh.textView.setText("Test default");
         }

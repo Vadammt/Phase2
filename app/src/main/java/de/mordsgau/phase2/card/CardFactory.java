@@ -13,6 +13,7 @@ import com.db.chart.renderer.AxisRenderer;
 import com.db.chart.renderer.XRenderer;
 import com.db.chart.renderer.YRenderer;
 import com.db.chart.util.Tools;
+import com.db.chart.view.BarChartView;
 import com.db.chart.view.HorizontalStackBarChartView;
 import com.db.chart.view.LineChartView;
 
@@ -51,8 +52,8 @@ public class CardFactory {
         final String[] sampleLabels = {"Auto", "Haus"};
         final float[][] sampleValues =
                 {{50f, 20f},  // % filled
-                {20f, 75f},  // % public used
-                {30f, 5f}}; // % not charged / empty
+                        {20f, 75f},  // % public used
+                        {30f, 5f}}; // % not charged / empty
 
 
         card.textView.setText(R.string.card_battery_states);
@@ -109,9 +110,33 @@ public class CardFactory {
 
         card.textView.setText(R.string.card_goals);
 
+        // Sample values
+        final String[] mLabels = {"A", "B", "C", "D"};
+        final float[][] mValues = {{6.5f, 8.5f, 2.5f, 10f}, {7.5f, 3.5f, 5.5f, 4f}};
+
+        final BarChartView mChart = new BarChartView(card.context);
+
+        // Data
+        BarSet barSet = new BarSet(mLabels, mValues[0]);
+        barSet.setColor(Color.parseColor("#fc2a53"));
+        mChart.addData(barSet);
+
+        mChart.setBarSpacing(Tools.fromDpToPx(20));
+        mChart.setRoundCorners(Tools.fromDpToPx(2));
+        mChart.setBarBackgroundColor(Color.parseColor("#592932"));
+
+        // Chart
+        mChart.setXAxis(false)
+                .setYAxis(false)
+                .setXLabels(XRenderer.LabelPosition.OUTSIDE)
+                .setYLabels(YRenderer.LabelPosition.NONE)
+                .setLabelsColor(Color.parseColor("#86705c"))
+                .setAxisColor(Color.parseColor("#86705c"));
+
+        mChart.show();
+
         View forecast = LayoutInflater.from(card.context).inflate(R.layout.card_goals, null);
 
         card.chartLayout.addView(forecast);
-
     }
 }
