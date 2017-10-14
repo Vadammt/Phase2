@@ -104,4 +104,14 @@ public class CardFactory {
         card.chartLayout.addView(forecast);
 
     }
+
+    public static void buildGoals(CardViewHolder card) {
+
+        card.textView.setText(R.string.card_goals);
+
+        View forecast = LayoutInflater.from(card.context).inflate(R.layout.card_goals, null);
+
+        card.chartLayout.addView(forecast);
+
+    }
 }

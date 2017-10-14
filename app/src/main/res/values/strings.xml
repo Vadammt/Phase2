@@ -5,4 +5,5 @@
     <string name="card_power_consumption">Verbrauch</string>
     <string name="card_battery_states">Akkustände</string>
     <string name="card_income_forecast">Vorhersage</string>
+    <string name="card_goals">Ziele</string>
 </resources>
