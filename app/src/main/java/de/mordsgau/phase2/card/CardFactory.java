@@ -1,5 +1,6 @@
 package de.mordsgau.phase2.card;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
@@ -20,11 +21,12 @@ import com.db.chart.view.LineChartView;
 
 import java.text.DecimalFormat;
 
+import de.mordsgau.phase2.BatteryState;
 import de.mordsgau.phase2.R;
 
 public class CardFactory {
 
-    public static void buildPowerConsumption(CardViewHolder card) {
+    public static void buildPowerConsumption(final CardViewHolder card) {
         // Sample values
         final String[] sampleLabels = {"2:00", "4:00", "6:00", "8:00", "10:00", "12:00", "14:00", "16:00", "18:00"};
         final float[][] sampleValues = {{0f, 2f, 1.4f, 4.f, 3.5f, 4.3f, 2f, 4f, 6.f},
@@ -60,6 +62,14 @@ public class CardFactory {
                 .show(new Animation().setDuration(2500));
 
         chart.show();
+
+        card.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Intent intent = new Intent(card.context, BatteryState.class);
+                card.context.startActivity(intent);
+            }
+        });
     }
 
     public static void buildBatteryState(CardViewHolder card) {
