@@ -42,6 +42,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<CardViewHolder> {
             case 3:
                 CardFactory.buildGoals(vh);
                 break;
+            case 4:
+                CardFactory.buildPhase2(vh);
+                break;
             default:
                 vh.textView.setText("Test default");
         }
@@ -50,7 +53,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<CardViewHolder> {
     @Override
     public int getItemCount() {
         // hard code card count for now
-        return 4;
+        return 5;
     }
 
     @Override

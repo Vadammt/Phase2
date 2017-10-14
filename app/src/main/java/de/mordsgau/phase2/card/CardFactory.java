@@ -190,4 +190,12 @@ public class CardFactory {
 
         card.chartLayout.addView(forecast);
     }
+
+    public static void buildPhase2(CardViewHolder card) {
+
+        card.textView.setText("Phase 2");
+        card.iconView.setImageResource(R.drawable.ic_flash_on_black_24dp);
+
+        // FIXME: world domination!
+    }
 }
