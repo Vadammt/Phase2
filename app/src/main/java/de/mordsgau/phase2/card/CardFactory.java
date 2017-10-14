@@ -1,6 +1,7 @@
 package de.mordsgau.phase2.card;
 
 import android.graphics.Color;
+import android.widget.LinearLayout;
 
 import com.db.chart.model.LineSet;
 import com.db.chart.renderer.AxisRenderer;
@@ -20,6 +21,9 @@ public class CardFactory {
     public static void buildPowerConsumption(RecyclerAdapter.ViewHolder card) {
         LineChartView chart = new LineChartView(card.context);
 
+        card.chartLayout.addView(chart);
+        chart.setLayoutParams(new LinearLayout.LayoutParams(card.chartLayout.getLayoutParams()));
+        //final LineChartView chart = (LineChartView) card.chartLayout.findViewById(R.id.chart_test);
         card.textView.setText(R.string.card_power_consumption);
 
         LineSet dataset = new LineSet(mLabels, mValues[0]);
@@ -37,8 +41,7 @@ public class CardFactory {
 
         chart.show();
 
-        // Add chart to card
-        card.chartLayout.addView(chart);
+        // Add chart to card;
     }
 
     private static void build(RecyclerAdapter.ViewHolder parentView) {
