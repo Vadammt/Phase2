@@ -26,7 +26,6 @@ public class CardFactory {
         final float[][] sampleValues = {{0f, 2f, 1.4f, 4.f, 3.5f, 4.3f, 2f, 4f, 6.f},
                 {1.5f, 2.5f, 1.5f, 5f, 4f, 5f, 4.3f, 2.1f, 1.4f}};
 
-
         card.textView.setText(R.string.card_power_consumption);
 
         LineChartView chart = new LineChartView(card.context);
@@ -84,9 +83,9 @@ public class CardFactory {
         thresPaint.setAntiAlias(true);
         thresPaint.setStrokeWidth(Tools.fromDpToPx(.75f));
 
-        chart.setXAxis(true)
+        chart.setXAxis(false)
                 .setXLabels(XRenderer.LabelPosition.OUTSIDE)
-                .setYAxis(true)
+                .setYAxis(false)
                 .setYLabels(YRenderer.LabelPosition.OUTSIDE)
                 .setValueThreshold(89.f, 89.f, thresPaint);
 
