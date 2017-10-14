@@ -46,13 +46,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         switch (position) {
             case 0:
                 CardFactory.buildPowerConsumption(vh);
-                //TODO chart
                 break;
             case 1:
+                //TODO chart
                 vh.textView.setText("Test 2");
                 break;
             case 2:
-                CardFactory.buildPowerConsumption(vh);
+                CardFactory.buildBatteryState(vh);
                 break;
             default:
                 vh.textView.setText("Test default");
