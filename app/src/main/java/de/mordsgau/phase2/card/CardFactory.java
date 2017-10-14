@@ -38,11 +38,23 @@ public class CardFactory {
         card.chartLayout.addView(chart);
         chart.setLayoutParams(new LinearLayout.LayoutParams(card.chartLayout.getLayoutParams()));
 
+
+        // Data
         LineSet dataset = new LineSet(sampleLabels, sampleValues[0]);
-        dataset.setColor(Color.parseColor("#53c1bd"))
-                .setFill(Color.parseColor("#3d6c73"))
-                .setGradientFill(new int[]{Color.parseColor("#364d5a"), Color.parseColor("#3f7178")},
-                        null);
+        dataset.setColor(Color.parseColor("#758cbb"))
+                .setFill(Color.parseColor("#2d374c"))
+                .setDotsColor(Color.parseColor("#758cbb"))
+                .setThickness(4)
+                .setDashed(new float[] {10f, 10f})
+                .beginAt(5);
+        chart.addData(dataset);
+
+        dataset = new LineSet(sampleLabels, sampleValues[0]);
+        dataset.setColor(Color.parseColor("#b3b5bb"))
+                .setFill(Color.parseColor("#2d374c"))
+                .setDotsColor(Color.parseColor("#ffc755"))
+                .setThickness(4)
+                .endAt(6);
         chart.addData(dataset);
 
         Paint gridPaint = new Paint();
