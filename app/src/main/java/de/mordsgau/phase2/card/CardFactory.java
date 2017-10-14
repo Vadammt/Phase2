@@ -43,9 +43,21 @@ public class CardFactory {
                         null);
         chart.addData(dataset);
 
+        Paint gridPaint = new Paint();
+        gridPaint.setColor(Color.parseColor("#e7e7e7"));
+        gridPaint.setStyle(Paint.Style.STROKE);
+        gridPaint.setAntiAlias(true);
+        gridPaint.setStrokeWidth(Tools.fromDpToPx(.7f));
+
         chart.setBorderSpacing(1)
                 .setXLabels(AxisRenderer.LabelPosition.OUTSIDE)
-                .setYLabels(AxisRenderer.LabelPosition.OUTSIDE);
+                .setYLabels(AxisRenderer.LabelPosition.OUTSIDE)
+                .setStep(2) // TODO show max. 5 labels -> MAX( sampleValues ) / 5
+                .setGrid(0, 10, gridPaint)
+                .setXAxis(false)
+                .setYAxis(false)
+                .setLabelsFormat(new DecimalFormat("##'kW'"))
+                .show(new Animation().setDuration(2500));
 
         chart.show();
     }
@@ -91,7 +103,8 @@ public class CardFactory {
                 .setXLabels(XRenderer.LabelPosition.OUTSIDE)
                 .setYAxis(false)
                 .setYLabels(YRenderer.LabelPosition.OUTSIDE)
-                .setValueThreshold(89.f, 89.f, thresPaint);
+                .setValueThreshold(89.f, 89.f, thresPaint)
+                .show(new Animation().setDuration(2500));
 
         LinearLayout.LayoutParams layout = new LinearLayout.LayoutParams(card.chartLayout.getLayoutParams());
         chart.setLayoutParams(layout);
@@ -115,8 +128,8 @@ public class CardFactory {
 
         // Sample values
         final HorizontalStackBarChartView mChart = new HorizontalStackBarChartView(card.context);
-        final String[] mLabels = {"0-20"};
-        final float[][] mValues = {{65}, {35}};
+        final String[] mLabels = {""};
+        final float[][] mValues = {{65}, {35}}; // Percent values
 
         // Data
         BarSet barSet = new BarSet(mLabels, mValues[0]);
@@ -132,8 +145,6 @@ public class CardFactory {
         gridPaint.setStyle(Paint.Style.STROKE);
         gridPaint.setAntiAlias(true);
         gridPaint.setStrokeWidth(Tools.fromDpToPx(.7f));
-
-        mChart.setBarSpacing(Tools.fromDpToPx(10));
 
         mChart.setBorderSpacing(0)
                 .setYLabels(AxisRenderer.LabelPosition.NONE)
