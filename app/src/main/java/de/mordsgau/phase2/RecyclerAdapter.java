@@ -61,7 +61,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public int getItemCount() {
         // hard code card count for now
-        return 4;
+        return 8;
     }
 
     @Override
