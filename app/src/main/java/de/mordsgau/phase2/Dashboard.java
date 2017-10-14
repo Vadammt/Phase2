@@ -11,6 +11,8 @@ import android.view.View;
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
+import java.util.concurrent.Executors;
+
 import de.mordsgau.phase2.adapter.SectionsPagerAdapter;
 
 public class Dashboard extends AppCompatActivity {
@@ -43,7 +45,7 @@ public class Dashboard extends AppCompatActivity {
         setTitle("");
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
-
+        Executors.newSingleThreadExecutor();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three

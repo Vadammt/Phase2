@@ -1,4 +1,4 @@
-package de.mordsgau.phase2;
+package de.mordsgau.phase2.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import de.mordsgau.phase2.R;
 import de.mordsgau.phase2.card.CardFactory;
 
 /**
