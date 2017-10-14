@@ -27,12 +27,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         final CardView container;
         public final TextView textView;
         public final LinearLayout chartLayout;
+        public final Context context;
 
-        public ViewHolder(View itemView, TextView textView, LinearLayout chartLayout, CardView container) {
+        public ViewHolder(View itemView, TextView textView, LinearLayout chartLayout, CardView container, Context context) {
             super(itemView);
             this.textView = textView;
             this.chartLayout = chartLayout;
             this.container = container;
+            this.context = context;
         }
     }
 
@@ -70,7 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         final LinearLayout chartContainer = linearLayout.findViewById(R.id.chart_container);
         final CardView card = linearLayout.findViewById(R.id.card_view);
         // set the view's size, margins, paddings and layout parameters
-        ViewHolder vh = new ViewHolder(linearLayout.getRootView(), textContent, chartContainer, card);
+        ViewHolder vh = new ViewHolder(linearLayout.getRootView(), textContent, chartContainer, card, context);
         return vh;
     }
 }
