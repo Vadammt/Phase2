@@ -25,12 +25,12 @@ public class CardFactory {
             {1.5f, 2.5f, 1.5f, 5f, 4f, 5f, 4.3f, 2.1f, 1.4f}};
 
     private static final String[] sampleLabels_batteryState =
-            {"Auto"};
+            {"Auto", "Haus"};
 
     private static final float[][] sampleValues_batteryState =
-            {{50f},  // % filled
-            { 20f},  // % public used
-            { 30f}}; // % not charged / empty
+            {{50f, 20f},  // % filled
+            { 20f, 75f},  // % public used
+            { 30f,  5f}}; // % not charged / empty
 
     public static void buildPowerConsumption(RecyclerAdapter.ViewHolder card) {
 
@@ -76,7 +76,7 @@ public class CardFactory {
         stackBarSet.setColor(Color.parseColor("#777777"));
         chart.addData(stackBarSet);
 
-        chart.setBarSpacing(Tools.fromDpToPx(15));
+        chart.setBarSpacing(Tools.fromDpToPx(5));
         chart.setRoundCorners(Tools.fromDpToPx(1));
 
         Paint thresPaint = new Paint();
@@ -86,11 +86,14 @@ public class CardFactory {
         thresPaint.setAntiAlias(true);
         thresPaint.setStrokeWidth(Tools.fromDpToPx(.75f));
 
-        chart.setXAxis(false)
+        chart.setXAxis(true)
                 .setXLabels(XRenderer.LabelPosition.OUTSIDE)
-                .setYAxis(false)
-                .setYLabels(YRenderer.LabelPosition.NONE)
+                .setYAxis(true)
+                .setYLabels(YRenderer.LabelPosition.OUTSIDE)
                 .setValueThreshold(89.f, 89.f, thresPaint);
+
+        LinearLayout.LayoutParams layout = new LinearLayout.LayoutParams(card.chartLayout.getLayoutParams());
+        chart.setLayoutParams(layout);
 
         chart.show();
     }
