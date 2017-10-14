@@ -97,7 +97,7 @@ public class CardFactory {
         chart.show();
     }
 
-    public static void buildIncomeForecast(RecyclerAdapter.ViewHolder card) {
+    public static void buildIncomeForecast(CardViewHolder card) {
 
         card.textView.setText(R.string.card_income_forecast);
 
