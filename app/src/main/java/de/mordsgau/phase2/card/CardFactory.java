@@ -17,11 +17,10 @@ import com.db.chart.view.HorizontalStackBarChartView;
 import com.db.chart.view.LineChartView;
 
 import de.mordsgau.phase2.R;
-import de.mordsgau.phase2.adapter.RecyclerAdapter;
 
 public class CardFactory {
 
-    public static void buildPowerConsumption(RecyclerAdapter.ViewHolder card) {
+    public static void buildPowerConsumption(CardViewHolder card) {
         // Sample values
         final String[] sampleLabels = {"2:00", "4:00", "6:00", "8:00", "10:00", "12:00", "14:00", "16:00", "18:00"};
         final float[][] sampleValues = {{0f, 2f, 1.4f, 4.f, 3.5f, 4.3f, 2f, 4f, 6.f},
@@ -48,7 +47,7 @@ public class CardFactory {
         chart.show();
     }
 
-    public static void buildBatteryState(RecyclerAdapter.ViewHolder card) {
+    public static void buildBatteryState(CardViewHolder card) {
         // Sample values
         final String[] sampleLabels = {"Auto", "Haus"};
         final float[][] sampleValues =
