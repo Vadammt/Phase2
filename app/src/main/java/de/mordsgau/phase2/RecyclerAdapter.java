@@ -1,5 +1,7 @@
 package de.mordsgau.phase2;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.RecyclerView;
@@ -15,9 +17,11 @@ import android.widget.TextView;
 
 class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     final int viewIndex;
+    private final Context context;
 
-    public RecyclerAdapter(int viewIndex) {
+    public RecyclerAdapter(int viewIndex, Context applicationContext) {
         this.viewIndex = viewIndex;
+        this.context = applicationContext;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -37,7 +41,6 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder vh, int position) {
         // card index
-        vh.container.setElevation(30F);
         switch (position) {
             case 0:
                 vh.textView.setText("Test 1");
@@ -45,7 +48,6 @@ class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
                 break;
             case 1:
                 vh.textView.setText("Test 2");
-
                 break;
             case 2:
                 vh.textView.setText("Test 3");

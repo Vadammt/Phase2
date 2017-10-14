@@ -143,7 +143,7 @@ public class Dashboard extends AppCompatActivity {
             cardContainer.setHasFixedSize(true);
             final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
             cardContainer.setLayoutManager(layoutManager);
-            final RecyclerAdapter adapter = new RecyclerAdapter(RECENT);
+            final RecyclerAdapter adapter = new RecyclerAdapter(RECENT, getContext());
             cardContainer.setAdapter(adapter);
             //populateCards(cardContainer, getArguments().getInt(ARG_SECTION_NUMBER));
             adapter.notifyItemRangeInserted(0, 4);
