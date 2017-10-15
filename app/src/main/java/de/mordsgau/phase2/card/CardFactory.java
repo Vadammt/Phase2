@@ -17,7 +17,7 @@ import com.db.chart.view.HorizontalStackBarChartView;
 import com.db.chart.view.LineChartView;
 
 import de.mordsgau.phase2.R;
-import de.mordsgau.phase2.RecyclerAdapter;
+import de.mordsgau.phase2.adapter.RecyclerAdapter;
 
 public class CardFactory {
 
