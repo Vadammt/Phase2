@@ -50,7 +50,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<CardViewHolder> {
     @Override
     public int getItemCount() {
         // hard code card count for now
-        return 8;
+        return 4;
     }
 
     @Override
