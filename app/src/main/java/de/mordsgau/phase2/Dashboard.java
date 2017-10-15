@@ -108,7 +108,7 @@ public class Dashboard extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    final MqttClient subscriber = new MqttClient("tcp://www.mordsgau.de:1883", "example_subscriber", new MemoryPersistence());
+                    final MqttClient subscriber = new MqttClient("tcp://www.mordsgau.de:1883", MqttClient.generateClientId(), new MemoryPersistence());
                     subscriber.setCallback(new MqttCallback() {
 
                         @Override
