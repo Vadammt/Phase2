@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
+import com.github.florent37.materialviewpager.header.MaterialViewPagerHeaderDecorator;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -155,6 +156,7 @@ public class Dashboard extends AppCompatActivity {
             /*TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));*/
             final RecyclerView cardContainer = rootView.findViewById(R.id.card_container);
+            cardContainer.addItemDecoration(new MaterialViewPagerHeaderDecorator());
             cardContainer.setItemAnimator(new SlideInUpAnimator());
             cardContainer.setHasFixedSize(true);
             final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
