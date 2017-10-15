@@ -25,7 +25,7 @@
     </style>
 
     <style name="AppTheme.Card" parent="AppTheme">
-        <item name="android:textColorPrimary">@android:color/darker_gray</item>
+        <item name="android:textColorPrimary">#616161</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
