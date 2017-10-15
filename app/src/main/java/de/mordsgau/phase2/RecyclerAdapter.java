@@ -67,8 +67,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        LinearLayout linearLayout = (LinearLayout) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_view, parent, false);
+        CardView linearLayout = (CardView) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.card_view, parent, false);
         final TextView textContent = linearLayout.findViewById(R.id.text_content);
         final LinearLayout chartContainer = linearLayout.findViewById(R.id.chart_container);
         final CardView card = linearLayout.findViewById(R.id.card_view);
