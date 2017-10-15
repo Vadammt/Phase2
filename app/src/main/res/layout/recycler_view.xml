@@ -17,8 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:contentPaddingLeft="5dp"
-        app:contentPaddingRight="5dp"
-        app:contentPaddingBottom="15dp"
         app:contentPaddingTop="2dp"
         app:cardCornerRadius="1dp"
         app:cardPreventCornerOverlap="true"
@@ -31,9 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:paddingLeft="1dp"
-            android:paddingRight="1dp"
-            android:paddingTop="1dp"
-            android:paddingBottom="1dp">
+            android:paddingTop="1dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="28dp"
