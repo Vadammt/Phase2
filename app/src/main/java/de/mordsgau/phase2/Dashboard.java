@@ -1,23 +1,32 @@
 package de.mordsgau.phase2;
 
+import android.app.NotificationManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.github.florent37.materialviewpager.header.HeaderDesign;
 
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.RunnableFuture;
+import java.util.concurrent.Future;
 
 import de.mordsgau.phase2.adapter.SectionsPagerAdapter;
-import de.mordsgau.phase2.card.CardViewHolder;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -50,13 +59,7 @@ public class Dashboard extends AppCompatActivity {
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 
         final ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.submit(new Runnable() {
-            @Override
-            public void run() {
-                final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.card_container);
-                final CardViewHolder cardHolder = (CardViewHolder) recyclerView.findViewHolderForAdapterPosition(0);
-            }
-        });
+        runNotificationWatchdog(executorService);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
@@ -97,6 +100,65 @@ public class Dashboard extends AppCompatActivity {
         mViewPager.getViewPager().setOffscreenPageLimit(mViewPager.getViewPager().getAdapter().getCount());
         mViewPager.getPagerTitleStrip().setViewPager(mViewPager.getViewPager());
 
+    }
+
+    @NonNull
+    private Future<?> runNotificationWatchdog(ExecutorService executorService) {
+        return executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    final MqttClient subscriber = new MqttClient("tcp://www.mordsgau.de:1883", "example_subscriber", new MemoryPersistence());
+                    subscriber.setCallback(new MqttCallback() {
+
+                        @Override
+                        public void connectionLost(Throwable cause) {
+                            Log.e("ERROR", "lost connection");
+                        }
+
+                        @Override
+                        public void messageArrived(String topic, MqttMessage message) throws Exception {
+                            Log.d(Dashboard.class.getName(), "Received message: " + message);
+                            final String[] topicSplit = topic.split("/");
+                            final String titleContext = topicSplit[topicSplit.length - 1];
+                            final String readableName;
+                            switch(titleContext) {
+                                case "car_sharing":
+                                    readableName = "Car Sharing verfügbar";
+                                    break;
+                                default:
+                                    throw new IllegalArgumentException("Illegal topic name "+titleContext);
+                            }
+                            final NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
+                                    .setSmallIcon(R.drawable.ic_car_sharing)
+                                    .setContentTitle(readableName)
+                                    .setStyle(new NotificationCompat.BigTextStyle().bigText("Eine Route an Ihren Arbeitsplatz über autonomen Bus ist verfügbar\nAbfahrt in 10 Minuten"));
+                            int mNotificationId = 001;
+                            NotificationManager mNotifyMgr =
+                                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                            mNotifyMgr.notify(mNotificationId, mBuilder.build());
+                        }
+
+                        @Override
+                        public void deliveryComplete(IMqttDeliveryToken token) {
+                            //NOOP
+                        }
+                    });
+                    subscriber.connect();
+                    Log.i("INFO", "Connected");
+                    subscriber.subscribe("example_subscriber/push_notifications/+");
+                    synchronized (mViewPager) {
+                        try {
+                            mViewPager.wait();
+                        } catch (InterruptedException e) {
+                            Log.e("ERROR", "Exception while waiting: ", e);
+                        }
+                    }
+                } catch (MqttException ex) {
+                    Log.e("ERROR", "Exception occurred during MqttClient initialization", ex);
+                }
+            }
+        });
     }
 
 

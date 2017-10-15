@@ -53,9 +53,9 @@ public class RecentFragment extends Fragment {
         cardContainer.addItemDecoration(new MaterialViewPagerHeaderDecorator());
         cardContainer.setItemAnimator(new SlideInUpAnimator());
         cardContainer.setHasFixedSize(true);
-        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         cardContainer.setLayoutManager(layoutManager);
-        final RecyclerAdapter adapter = new RecyclerAdapter(RECENT, getContext());
+        final RecyclerAdapter adapter = new RecyclerAdapter(RECENT, getActivity().getApplicationContext());
         cardContainer.setAdapter(adapter);
         //populateCards(cardContainer, getArguments().getInt(ARG_SECTION_NUMBER));
         adapter.notifyItemRangeInserted(0, 4);

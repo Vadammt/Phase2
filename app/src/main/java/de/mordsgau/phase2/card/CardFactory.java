@@ -67,6 +67,7 @@ public class CardFactory {
             @Override
             public void onClick(View view) {
                 final Intent intent = new Intent(card.context, BatteryState.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 card.context.startActivity(intent);
             }
         });
