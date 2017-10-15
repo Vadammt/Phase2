@@ -33,6 +33,7 @@ public class CardFactory {
                 {1.5f, 2.5f, 1.5f, 5f, 4f, 5f, 4.3f, 2.1f, 1.4f}};
 
         card.textView.setText(R.string.card_power_consumption);
+        card.iconView.setImageResource(R.drawable.ic_consumption);
 
         LineChartView chart = new LineChartView(card.context);
         card.chartLayout.addView(chart);
@@ -95,6 +96,7 @@ public class CardFactory {
 
 
         card.textView.setText(R.string.card_battery_states);
+        card.iconView.setImageResource(R.drawable.ic_battery_charging_full_black_24px);
 
         HorizontalStackBarChartView chart = new HorizontalStackBarChartView(card.context);
         card.chartLayout.addView(chart);
@@ -137,6 +139,7 @@ public class CardFactory {
     public static void buildIncomeForecast(CardViewHolder card) {
 
         card.textView.setText(R.string.card_income_forecast);
+        card.iconView.setImageResource(R.drawable.ic_trend);
 
         View forecast = LayoutInflater.from(card.context).inflate(R.layout.card_income_forecast, null);
 
@@ -147,6 +150,7 @@ public class CardFactory {
     public static void buildGoals(CardViewHolder card) {
 
         card.textView.setText(R.string.card_goals);
+        card.iconView.setImageResource(R.drawable.ic_done_black_24px);
 
         // Sample values
         final HorizontalStackBarChartView mChart = new HorizontalStackBarChartView(card.context);
