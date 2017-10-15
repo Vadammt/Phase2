@@ -34,7 +34,7 @@ public class CardFactory {
             { 20f, 75f},  // % public used
             { 30f,  5f}}; // % not charged / empty
 
-    public static void buildPowerConsumption(RecyclerAdapter.ViewHolder card) {
+    public static void buildPowerConsumption(CardViewHolder card) {
 
         card.textView.setText(R.string.card_power_consumption);
 
@@ -58,7 +58,7 @@ public class CardFactory {
         chart.show();
     }
 
-    public static void buildBatteryState(RecyclerAdapter.ViewHolder card) {
+    public static void buildBatteryState(CardViewHolder card) {
 
         card.textView.setText(R.string.card_battery_states);
 
@@ -100,7 +100,7 @@ public class CardFactory {
         chart.show();
     }
 
-    public static void buildIncomeForecast(RecyclerAdapter.ViewHolder card) {
+    public static void buildIncomeForecast(CardViewHolder card) {
 
         card.textView.setText(R.string.card_income_forecast);
 

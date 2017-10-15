@@ -11,12 +11,13 @@ import android.widget.TextView;
 
 import de.mordsgau.phase2.R;
 import de.mordsgau.phase2.card.CardFactory;
+import de.mordsgau.phase2.card.CardViewHolder;
 
 /**
  * Created by simonbaier on 14.10.17.
  */
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<CardViewHolder> {
     final int viewIndex;
     private final Context context;
 
@@ -25,24 +26,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         this.context = applicationContext;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        // Contains a text view and a layout containing charts
-        final CardView container;
-        public final TextView textView;
-        public final LinearLayout chartLayout;
-        public final Context context;
-
-        public ViewHolder(View itemView, TextView textView, LinearLayout chartLayout, CardView container, Context context) {
-            super(itemView);
-            this.textView = textView;
-            this.chartLayout = chartLayout;
-            this.container = container;
-            this.context = context;
-        }
-    }
-
     @Override
-    public void onBindViewHolder(ViewHolder vh, int position) {
+    public void onBindViewHolder(CardViewHolder vh, int position) {
         // card index
         switch (position) {
             case 0:
@@ -66,7 +51,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         CardView linearLayout = (CardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_view, parent, false);
@@ -74,7 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         final LinearLayout chartContainer = linearLayout.findViewById(R.id.chart_container);
         final CardView card = linearLayout.findViewById(R.id.card_view);
         // set the view's size, margins, paddings and layout parameters
-        ViewHolder vh = new ViewHolder(linearLayout.getRootView(), textContent, chartContainer, card, context);
+        CardViewHolder vh = new CardViewHolder(linearLayout.getRootView(), textContent, chartContainer, card, context);
         return vh;
     }
 }
